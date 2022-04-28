@@ -47,3 +47,8 @@ export class AppEffects {
   ) { }
 }
 
+/**
+ * Notice in Figure 6.13 that the Diff is nothing after
+ * the GET_USERS_SUCCESS action is dispatched. This is because we haven't
+ * updated the state using the reducer so far.
+ */
