@@ -15,10 +15,7 @@ import { UserService } from '../core/services/user.service';
 import { APP_ACTIONS, getUsersFailure, getUsersSuccess } from './app.actions';
 @Injectable()
 export class AppEffects {
-    constructor(
-    private actions$: Actions,
-    private userService: UserService
-  ) { }
+
   /*
   Step 4 -line 28
   We'll create a new effect in the app.effects.ts
@@ -37,10 +34,16 @@ export class AppEffects {
           }),
           catchError((error) => of(getUsersFailure({
             error
-          })))
+          })
+          )
+          )
         )
       )
     )
   );
+  constructor(
+    private actions$: Actions,
+    private userService: UserService
+  ) { }
 }
 
