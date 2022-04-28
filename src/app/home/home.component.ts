@@ -46,6 +46,21 @@ export class HomeComponent implements OnInit, OnDestroy {
    * instance directly. Let's remove the UserService from the
    * HomeComponent class. We won't see any data right now,
    * but that's what we're going to do in the next recipe.
+   *
+   * In order for the NgRx effects to work, we needed to
+   * install the @ngrx/effects package, create an effect,
+   * and register it as an array of effects (root effects)
+   * in the AppModule class. When you create an effect,
+   * it has to listen to an action. When an action is
+   * dispatched to the store from any component or even
+   * from another effect, the registered effect triggers,
+   * does the job you want it to do, and is supposed to
+   * dispatch another action in return. For API calls,
+   * we usually have three actions—that is, the main action,
+   * and the following success and failure actions.
+   * Ideally, on the success action (and perhaps on the
+   * failure action too), you would want to update
+   * some of your state variables.
    */
 
   ngOnDestroy() {}
