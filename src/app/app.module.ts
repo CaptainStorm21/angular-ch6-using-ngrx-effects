@@ -11,6 +11,9 @@ import { LoaderComponent } from './core/components/loader/loader.component';
 import { StoreModule } from '@ngrx/store';
 import * as appStore from './store/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+//step 5 - We'll now register our effect as the root effects for the app in the
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/app.effects';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
+    //step 5
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
