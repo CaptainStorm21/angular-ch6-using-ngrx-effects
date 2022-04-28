@@ -15,8 +15,32 @@ import { UserService } from '../core/services/user.service';
 import { APP_ACTIONS, getUsersFailure, getUsersSuccess } from './app.actions';
 @Injectable()
 export class AppEffects {
-  constructor(
+    constructor(
     private actions$: Actions,
     private userService: UserService
   ) { }
+  /*
+  Step 4 -line 28
+  We'll create a new effect in the app.effects.ts
+  file now to register a listener for the GET_USERS action,
+  as follows:
+   */
+  getUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(APP_ACTIONS.GET_USERS),
+      mergeMap(() => this.userService.getUsers()
+        .pipe(
+          map(users => {
+            return getUsersSuccess({
+              users
+            })
+          }),
+          catchError((error) => of(getUsersFailure({
+            error
+          })))
+        )
+      )
+    )
+  );
 }
+
