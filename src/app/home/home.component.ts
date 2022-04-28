@@ -25,7 +25,8 @@ import { getUsers } from '../store/app.actions';
 export class HomeComponent implements OnInit, OnDestroy {
   users$: Observable<IUser[]>;
   constructor(
-    private userService: UserService,
+    //step 7 - we need to remove the userServices
+    // private userService: UserService,
     //step 6
     private store: Store<AppState>
   ) {}
@@ -33,9 +34,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //step 6
     this.store.dispatch(getUsers())
-    this.users$ = this.userService.getUsers();
+    //step 7 remove - 2nd API call
+    // this.users$ = this.userService.getUsers();
   }
 
+  /**
+   * step  7 - notes
+   * Right now, we're sending two calls to the server—one
+   * through the effect, and one through the ngOnInit
+   * method of the HomeComponent class using the UserService
+   * instance directly. Let's remove the UserService from the
+   * HomeComponent class. We won't see any data right now,
+   * but that's what we're going to do in the next recipe.
+   */
 
   ngOnDestroy() {}
 }
